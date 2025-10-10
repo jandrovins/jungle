@@ -9,7 +9,6 @@
 , automake
 , libtool
 , mpi
-, rsync
 , gfortran
 }:
 
@@ -44,13 +43,24 @@ stdenv.mkDerivation rec {
 
   configureFlags = [
     "--with-infiniband=${rdma-core-all}"
-    "--with-mpi=${mpiAll}"
+    "--with-mpi=yes" # fixes mpi detection when cross-compiling
     "--with-slurm"
     "CFLAGS=-fPIC"
     "CXXFLAGS=-fPIC"
   ];
 
-  buildInputs = [ slurm mpiAll rdma-core-all autoconf automake libtool rsync gfortran ];
+  nativeBuildInputs = [
+    autoconf
+    automake
+    gfortran
+    libtool
+  ];
+
+  buildInputs = [
+    slurm
+    mpiAll
+    rdma-core-all
+  ];
 
   hardeningDisable = [ "all" ];
 
