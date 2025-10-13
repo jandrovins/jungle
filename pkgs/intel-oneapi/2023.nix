@@ -10,7 +10,7 @@
 , zlib
 , autoPatchelfHook
 , libfabric
-, gcc13
+, gcc
 , wrapCCWith
 }:
 
@@ -32,8 +32,6 @@ let
     license = lib.licenses.unfree;
     maintainers = with lib.maintainers.bsc; [ abonerib ];
   };
-
-  gcc = gcc13;
 
   v = {
     hpckit   = "2023.1.0";
