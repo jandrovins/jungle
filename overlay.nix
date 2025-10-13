@@ -7,6 +7,7 @@ let
   callPackage = final.callPackage;
 
   bscPkgs = {
+    agenix = prev.callPackage ./pkgs/agenix/default.nix { };
     amd-uprof = prev.callPackage ./pkgs/amd-uprof/default.nix { };
     bench6 = callPackage ./pkgs/bench6/default.nix { };
     bigotes = callPackage ./pkgs/bigotes/default.nix { };

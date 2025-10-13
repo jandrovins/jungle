@@ -1,15 +1,13 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, agenix, ... }:
+  outputs = { self, nixpkgs, ... }:
 let
   mkConf = name: nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = { inherit nixpkgs agenix; theFlake = self; };
+    specialArgs = { inherit nixpkgs; theFlake = self; };
     modules = [ "${self.outPath}/m/${name}/configuration.nix" ];
   };
   # For now we only support x86

@@ -1,9 +1,8 @@
-{ agenix, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [ agenix.nixosModules.default ];
+  imports = [ ../../module/agenix.nix ];
 
-  environment.systemPackages = [
-    agenix.packages.x86_64-linux.default
-  ];
+  # Add agenix to system packages
+  environment.systemPackages = [ pkgs.agenix ];
 }
