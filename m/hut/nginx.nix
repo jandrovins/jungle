@@ -4,8 +4,8 @@ let
     name = "jungle-web";
     src = pkgs.fetchgit {
       url = "https://jungle.bsc.es/git/rarias/jungle-website.git";
-      rev = "739bf0175a7f05380fe7ad7023ff1d60db1710e1";
-      hash = "sha256-ea5DzhYTzZ9TmqD+x95rdNdLbxPnBluqlYH2NmBYmc4=";
+      rev = "52abaf4d71652a9ef77a0b098db14ca33bffff4c";
+      hash = "sha256-/ul9GazbOrOkmlvSgDz/+2W+V+ir5725Y7mVLc3rb0M=";
     };
     buildInputs = [ pkgs.hugo ];
     buildPhase = ''
