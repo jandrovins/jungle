@@ -17,6 +17,7 @@
     ./postgresql.nix
     ./nginx.nix
     ./p.nix
+    ./ompss2-timer.nix
     #./pxe.nix
   ];
 
