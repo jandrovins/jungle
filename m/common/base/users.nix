@@ -180,6 +180,19 @@
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmMqKqPg4uocNOr3O41kLbZMOMJn3m2ZdN1JvTR96z3 bsccns@arnau-bsc"
         ];
       };
+
+      aaguirre = {
+        uid = 9655;
+        isNormalUser = true;
+        home = "/home/Computational/aaguirre";
+        description = "Alejandro Aguirre";
+        group = "Computational";
+        hosts = [ "apex" "hut" ];
+        hashedPassword = "$6$TXRXQT6jjBvxkxU6$E.sh5KspAm1qeG5Ct7OPHpo8REmbGDwjFGvqeGgTVz3GASGOAnPL7UMZsMAsAKBoahOw.v8LNno6XGrTEPzZH1";
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOlRX7ZCnqtUJYCxKgWmgSrFCYuA2LHY96rVwqxXPl86 aaguirre@BSC-8488184117"
+        ];
+      };
     };
 
     groups = {
