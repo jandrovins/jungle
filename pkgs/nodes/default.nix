@@ -3,7 +3,6 @@
 , lib
 , fetchFromGitHub
 , pkg-config
-, perl
 , numactl
 , hwloc
 , boost
@@ -11,6 +10,7 @@
 , ovni
 , nosv
 , clangOmpss2
+, which
 , useGit ? false
 , gitUrl ? "ssh://git@gitlab-internal.bsc.es/nos-v/nodes.git"
 , gitBranch ? "master"
@@ -59,6 +59,7 @@ in
     doCheck = false;
     nativeCheckInputs = [
       clangOmpss2
+      which
     ];
 
     # The "bindnow" flags are incompatible with ifunc resolution mechanism. We
