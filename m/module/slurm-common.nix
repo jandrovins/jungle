@@ -86,9 +86,7 @@ in {
       # when a task runs (srun) so we can ssh early.
       PrologFlags=Alloc,Contain,X11
 
-      # LaunchParameters=ulimit_pam_adopt will set RLIMIT_RSS in processes
-      # adopted by the external step, similar to tasks running in regular steps
-      # LaunchParameters=ulimit_pam_adopt
+      LaunchParameters=use_interactive_step
       SlurmdDebug=debug5
       #DebugFlags=Protocol,Cgroup
     '';
