@@ -51,6 +51,7 @@ let
     prometheus-slurm-exporter = prev.callPackage ./pkgs/slurm-exporter/default.nix { };
     #pscom = callPackage ./pkgs/parastation/pscom.nix { }; # Unmaintaned
     #psmpi = callPackage ./pkgs/parastation/psmpi.nix { }; # Unmaintaned
+    slurm = import ./pkgs/slurm/default.nix { slurm = prev.slurm; };
     sonar = callPackage ./pkgs/sonar/default.nix { };
     stdenvClangOmpss2 = final.stdenv.override { cc = final.clangOmpss2; allowedRequisites = null; };
     stdenvClangOmpss2Nanos6 = final.stdenv.override { cc = final.clangOmpss2Nanos6; allowedRequisites = null; };
