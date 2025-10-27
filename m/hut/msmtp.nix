@@ -1,8 +1,11 @@
 { config, lib, ... }:
 {
+  # Robot user that can see the password to send mail from jungle-robot
+  users.groups.mail-robot = {};
+
   age.secrets.jungleRobotPassword = {
     file = ../../secrets/jungle-robot-password.age;
-    group = "gitea";
+    group = "mail-robot";
     mode = "440";
   };
 
