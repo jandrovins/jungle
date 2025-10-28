@@ -101,14 +101,16 @@ let
   pkgsTopLevel = filterAttrs (_: isDerivation) bscPkgs;
 
   # Native build in that platform doesn't imply cross build works
-  canCrossCompile = platform: pkg:
+  canCrossCompile = platform: default: pkg:
     (isDerivation pkg) &&
-    # Must be defined explicitly
-    (pkg.meta.cross or false) &&
-    (meta.availableOn platform pkg);
+    # If meta.cross is undefined, use default
+    (pkg.meta.cross or default) &&
+    (meta.availableOn final.pkgsCross.${platform}.stdenv.hostPlatform pkg);
 
   # For now only RISC-V
-  crossSet = { riscv64 = final.pkgsCross.riscv64.bsc.pkgsTopLevel; };
+  crossSet = genAttrs [ "riscv64" ] (platform:
+    filterAttrs (_: canCrossCompile platform true)
+      final.pkgsCross.${platform}.bsc.pkgsTopLevel);
 
   buildList = name: paths:
     final.runCommandLocal name { } ''
@@ -128,7 +130,7 @@ let
   # For now only RISC-V
   crossList = buildList "ci-cross"
     (filter
-      (canCrossCompile final.pkgsCross.riscv64.stdenv.hostPlatform)
+      (canCrossCompile "riscv64" false) # opt-in (pkgs with: meta.cross = true)
         (builtins.attrValues crossSet.riscv64));
 
 in bscPkgs // {
