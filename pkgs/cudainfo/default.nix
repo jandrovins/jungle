@@ -1,5 +1,6 @@
 {
   stdenv
+, lib
 , cudatoolkit
 , cudaPackages
 , autoAddDriverRunpath
@@ -39,5 +40,10 @@ stdenv.mkDerivation (finalAttrs: {
       fi
     '';
     installPhase = "touch $out";
+  };
+
+  meta = {
+    platforms = [ "x86_64-linux" ];
+    maintainers = with lib.maintainers.bsc; [ rarias ];
   };
 })
