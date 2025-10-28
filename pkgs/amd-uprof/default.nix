@@ -90,7 +90,7 @@ in
     meta = {
       description = "Performance analysis tool-suite for x86 based applications";
       homepage = "https://www.amd.com/es/developer/uprof.html";
-      platforms = lib.platforms.linux;
+      platforms = [ "x86_64-linux" ];
       license = lib.licenses.unfree;
       maintainers = with lib.maintainers.bsc; [ rarias varcila ];
     };
