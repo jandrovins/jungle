@@ -1,0 +1,97 @@
+#!/bin/sh
+#
+# Copyright (c) 2025, Barcelona Supercomputing Center (BSC)
+# SPDX-License-Identifier: GPL-3.0+
+# Author: Rodrigo Arias Mallo <rodrigo.arias@bsc.es>
+
+function usage() {
+  echo "USAGE: nixgen [-f] [package [...]] [-b package [...]]" >&2
+  echo "  Generates a flake.nix file with the given packages." >&2
+  echo "  After flake.nix is created, use 'nix develop' to enter the shell." >&2
+  echo "OPTIONS" >&2
+  echo "  -f               Overwrite existing flake.nix (default: no)." >&2
+  echo "  packages...      Add these packages to the shell." >&2
+  echo "  -b packages...   Add the dependencies needed to build these packages." >&2
+  echo "EXAMPLE" >&2
+  echo "  $ nixgen ovni bigotes -b nosv tampi" >&2
+  echo "  Adds the packages ovni and bigotes as well as all required dependencies" >&2
+  echo "  to build nosv and tampi." >&2
+  echo "AUTHOR" >&2
+  echo "  Rodrigo Arias Mallo <rodrigo.arias@bsc.es>" >&2
+  exit 1
+}
+
+mode=package
+packages=
+inputsFrom=
+force=
+
+if [[ $# -eq 0 ]]; then
+  usage
+fi
+
+while [[ $# -gt 0 ]]; do
+    case $1 in -b)
+      mode=build
+      shift
+      ;;
+    -f)
+      force=1
+      shift
+      ;;
+    -h)
+      usage
+      ;;
+    -*|--*)
+      echo "error: unknown option $1" >&2
+      exit 1
+      ;;
+    *)
+      if [ "$mode" == "package" ]; then
+        packages+="${packages:+ }$1"
+      else
+        inputsFrom+="${inputsFrom:+ }$1"
+      fi
+      shift
+      ;;
+  esac
+done
+
+if [ ! "$force" -a -e flake.nix ]; then
+  echo "error: flake.nix exists, force overwrite with -f" >&2
+  exit 1
+fi
+
+cat > flake.nix <<EOF
+{
+  inputs.jungle.url = "git+https://jungle.bsc.es/git/rarias/jungle";
+  outputs = { self, jungle }:
+  let
+    nixpkgs = jungle.inputs.nixpkgs;
+    customOverlay = (final: prev: {
+      # Example overlay, for now empty
+    });
+    pkgs = import nixpkgs {
+      system = "x86_64-linux";
+      overlays = [
+        # Apply jungle overlay to get our BSC custom packages
+        jungle.outputs.bscOverlay
+        # And on top apply our local changes to customize for cluster
+        customOverlay
+      ];
+    };
+  in {
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      pname = "devshell";
+      # Include these packages in the shell
+      packages = with pkgs; [
+        $packages
+      ];
+      # The dependencies needed to build these packages will be also included
+      inputsFrom = with pkgs; [
+        $inputsFrom
+      ];
+    };
+  };
+}
+EOF

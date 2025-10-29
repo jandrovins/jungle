@@ -37,6 +37,7 @@ let
     nanos6 = callPackage ./pkgs/nanos6/default.nix { };
     nanos6Debug = final.nanos6.override { enableDebug = true; };
     nixtools = callPackage ./pkgs/nixtools/default.nix { };
+    nixgen = callPackage ./pkgs/nixgen/default.nix { };
     # Broken because of pkgsStatic.libcap
     # See: https://github.com/NixOS/nixpkgs/pull/268791
     #nix-wrap = callPackage ./pkgs/nix-wrap/default.nix { };
