@@ -7,7 +7,7 @@
 , useGit ? false
 , gitBranch ? "master"
 , gitUrl ? "ssh://git@bscpm04.bsc.es/rarias/ovni.git"
-, gitCommit ? "e4f62382076f0cf0b1d08175cf57cc0bc51abc61"
+, gitCommit ? "06432668f346c8bdc1006fabc23e94ccb81b0d8b" # version 1.13.0
 , enableDebug ? false
 # Only enable MPI if the build is native (fails on cross-compilation)
 , useMpi ? (stdenv.buildPlatform.canExecute stdenv.hostPlatform)
@@ -15,13 +15,13 @@
 
 let
   release = rec {
-    version = "1.12.0";
+    version = "1.13.0";
     src = fetchFromGitHub {
       owner = "bsc-pm";
       repo = "ovni";
       rev = "${version}";
-      hash = "sha256-H04JvsVKrdqr3ON7JhU0g17jjlg/jzQ7eTfx9vUNd3E=";
-    } // { shortRev = "a73afcf"; };
+      hash = "sha256-0l2ryIyWNiZqeYdVlnj/WnQGS3xFCY4ICG8JedX424w=";
+    } // { shortRev = "0643266"; };
   };
 
   git = rec {
