@@ -14,19 +14,19 @@
 , useGit ? false
 , gitUrl ? "ssh://git@gitlab-internal.bsc.es/nos-v/nodes.git"
 , gitBranch ? "master"
-, gitCommit ? "6002ec9ae6eb876d962cc34366952a3b26599ba6"
+, gitCommit ? "511489e71504a44381e0930562e7ac80ac69a848" # version-1.4
 }:
 
 with lib;
 
 let
   release = rec {
-    version = "1.3";
+    version = "1.4";
     src = fetchFromGitHub {
       owner = "bsc-pm";
       repo = "nodes";
       rev = "version-${version}";
-      hash = "sha256-cFb9pxcjtkMmH0CsGgUO9LTdXDNh7MCqicgGWawLrsU=";
+      hash = "sha256-+lR/R0l3fGZO3XG7whMorFW2y2YZ0ZFnLeOHyQYrAsQ=";
     };
   };
 
