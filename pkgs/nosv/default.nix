@@ -13,19 +13,19 @@
 , useGit ? false
 , gitUrl ? "git@gitlab-internal.bsc.es:nos-v/nos-v.git"
 , gitBranch ? "master"
-, gitCommit ? "9f47063873c3aa9d6a47482a82c5000a8c813dd8"
+, gitCommit ? "1108e4786b58e0feb9a16fa093010b763eb2f8e8" # version 4.0.0
 }:
 
 with lib;
 
 let
   release = rec {
-    version = "3.2.0";
+    version = "4.0.0";
     src = fetchFromGitHub {
       owner = "bsc-pm";
       repo = "nos-v";
       rev = "${version}";
-      hash = "sha256-yaz92426EM8trdkBJlISmAoG9KJCDTvoAW/HKrasvOw=";
+      hash = "sha256-llaq73bd/YxLVKNlMebnUHKa4z3sdcsuDUoVwUxNuw8=";
     };
   };
 
