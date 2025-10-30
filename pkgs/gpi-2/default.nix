@@ -70,5 +70,6 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers.bsc; [ rarias ];
     platforms = lib.platforms.linux;
     license = lib.licenses.gpl3Plus;
+    cross = false; # infiniband detection does not work
   };
 }

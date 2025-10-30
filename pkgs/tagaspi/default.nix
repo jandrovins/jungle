@@ -56,5 +56,6 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers.bsc; [ rarias ];
     platforms = lib.platforms.linux;
     license = lib.licenses.gpl3Plus;
+    cross = false; # gpi-2 cannot cross
   };
 }
