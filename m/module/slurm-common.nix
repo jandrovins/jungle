@@ -1,31 +1,6 @@
 { config, pkgs, ... }:
 
-let
-  suspendProgram = pkgs.writeShellScript "suspend.sh" ''
-    exec 1>>/var/log/power_save.log 2>>/var/log/power_save.log
-    set -x
-    export "PATH=/run/current-system/sw/bin:$PATH"
-    echo "$(date) Suspend invoked $0 $*" >> /var/log/power_save.log
-    hosts=$(scontrol show hostnames $1)
-    for host in $hosts; do
-      echo Shutting down host: $host
-      ipmitool -I lanplus -H ''${host}-ipmi -P "" -U "" chassis power off
-    done
-  '';
-
-  resumeProgram = pkgs.writeShellScript "resume.sh" ''
-    exec 1>>/var/log/power_save.log 2>>/var/log/power_save.log
-    set -x
-    export "PATH=/run/current-system/sw/bin:$PATH"
-    echo "$(date) Suspend invoked $0 $*" >> /var/log/power_save.log
-    hosts=$(scontrol show hostnames $1)
-    for host in $hosts; do
-      echo Starting host: $host
-      ipmitool -I lanplus -H ''${host}-ipmi -P "" -U "" chassis power on
-    done
-  '';
-
-in {
+{
   services.slurm = {
     controlMachine = "apex";
     clusterName = "jungle";
@@ -58,16 +33,6 @@ in {
       # Enable task/affinity to allow the jobs to run in a specified subset of
       # the resources. Use the task/cgroup plugin to enable process containment.
       TaskPlugin=task/affinity,task/cgroup
-
-      # Power off unused nodes until they are requested
-      SuspendProgram=${suspendProgram}
-      SuspendTimeout=60
-      ResumeProgram=${resumeProgram}
-      ResumeTimeout=300
-      SuspendExcNodes=fox
-
-      # Turn the nodes off after 1 hour of inactivity
-      SuspendTime=3600
 
       # Reduce port range so we can allow only this range in the firewall
       SrunPortRange=60000-61000
