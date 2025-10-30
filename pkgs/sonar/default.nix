@@ -35,5 +35,6 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers.bsc; [ rarias ];
     platforms = lib.platforms.linux;
     license = lib.licenses.mit;
+    cross = true;
   };
 }

@@ -68,5 +68,6 @@ in stdenv.mkDerivation {
     maintainers = with lib.maintainers.bsc; [ rarias ];
     platforms = lib.platforms.linux;
     license = lib.licenses.gpl3Plus;
+    cross = true;
   };
 }

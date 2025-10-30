@@ -55,5 +55,6 @@ in mpich.overrideAttrs (old: {
 
   meta = old.meta // {
     maintainers = old.meta.maintainers ++ (with lib.maintainers.bsc; [ rarias ]);
+    cross = true;
   };
 })

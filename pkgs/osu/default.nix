@@ -44,5 +44,6 @@ stdenv.mkDerivation rec {
     homepage = "http://mvapich.cse.ohio-state.edu/benchmarks/";
     maintainers = [ ];
     platforms = lib.platforms.all;
+    cross = true;
   };
 }
