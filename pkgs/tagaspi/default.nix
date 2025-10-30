@@ -5,22 +5,13 @@
 , automake
 , autoconf
 , libtool
-, mpi
 , autoreconfHook
 , gpi-2
 , boost
 , numactl
 , rdma-core
 , gfortran
-, symlinkJoin
 }:
-
-let
-  mpiAll = symlinkJoin {
-    name = "mpi-all";
-    paths = [ mpi.all ];
-  };
-in
 
 stdenv.mkDerivation rec {
   pname = "tagaspi";
@@ -35,16 +26,18 @@ stdenv.mkDerivation rec {
     hash = "sha256-RGG/Re2uM293HduZfGzKUWioDtwnSYYdfeG9pVrX9EM=";
   };
 
-  buildInputs = [
+  nativeBuildInputs = [
     autoreconfHook
     automake
     autoconf
     libtool
+    gfortran
+  ];
+
+  buildInputs = [
     boost
     numactl
     rdma-core
-    gfortran
-    mpiAll
   ];
 
   dontDisableStatic = true;
