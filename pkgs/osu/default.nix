@@ -32,6 +32,11 @@ stdenv.mkDerivation rec {
       "CXX=mpicxx"
   ];
 
+  env = {
+    MPICH_CC="${stdenv.cc}/bin/${stdenv.cc.targetPrefix}cc";
+    MPICH_CXX="${stdenv.cc}/bin/${stdenv.cc.targetPrefix}c++";
+  };
+
   postInstall = ''
     mkdir -p $out/bin
     for f in $(find $out -executable -type f); do
