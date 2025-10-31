@@ -12,6 +12,7 @@
 # For each arch
 , enableFortran ? stdenv.hostPlatform == stdenv.buildPlatform
 , perl
+, targetPackages
 }:
 
 let
@@ -45,10 +46,10 @@ in mpich.overrideAttrs (old: {
   ];
 
   preFixup = ''
-    sed -i 's:^CC=.*:CC=gcc:' $out/bin/mpicc
-    sed -i 's:^CXX=.*:CXX=g++:' $out/bin/mpicxx
+    sed -i 's:^CC=.*:CC=${targetPackages.stdenv.cc}/bin/${targetPackages.stdenv.cc.targetPrefix}cc:' $out/bin/mpicc
+    sed -i 's:^CXX=.*:CXX=${targetPackages.stdenv.cc}/bin/${targetPackages.stdenv.cc.targetPrefix}c++:' $out/bin/mpicxx
   '' + lib.optionalString enableFortran ''
-    sed -i 's:^FC=.*:FC=gfortran:' $out/bin/mpifort
+    sed -i 's:^FC=.*:FC=${targetPackages.gfortran or gfortran}/bin/${targetPackages.gfortran.targetPrefix or gfortran.targetPrefix}gfortran:' $out/bin/mpifort
   '';
 
   hardeningDisable = [ "all" ];
