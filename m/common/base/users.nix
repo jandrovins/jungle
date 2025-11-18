@@ -139,6 +139,7 @@
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKGt0ESYxekBiHJQowmKpfdouw0hVm3N7tUMtAaeLejK vincent@varch"
         ];
+        shell = pkgs.zsh;
       };
 
       pmartin1 = {
