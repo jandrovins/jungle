@@ -57,6 +57,8 @@
     };
   };
 
+  services.fail2ban.enable = true;
+
   networking.firewall = {
     extraCommands = ''
       # Blackhole BSC vulnerability scanner (OpenVAS) as it is spamming our
