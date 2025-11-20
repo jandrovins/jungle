@@ -59,6 +59,9 @@
 
   services.fail2ban.enable = true;
 
+  # Disable SSH login with password, allow only keypair
+  services.openssh.settings.PasswordAuthentication = false;
+
   networking.firewall = {
     extraCommands = ''
       # Blackhole BSC vulnerability scanner (OpenVAS) as it is spamming our
