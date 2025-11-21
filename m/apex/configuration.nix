@@ -57,7 +57,14 @@
     };
   };
 
-  services.fail2ban.enable = true;
+  services.fail2ban = {
+    enable = true;
+    maxretry = 5;
+    bantime-increment = {
+      enable = true; # Double ban time on each attack
+      maxtime = "7d"; # Ban up to a week
+    };
+  };
 
   # Disable SSH login with password, allow only keypair
   services.openssh.settings.PasswordAuthentication = false;
