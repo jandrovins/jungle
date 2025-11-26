@@ -27,10 +27,10 @@ let
   # We need to replace the lld linker from bintools with our linker just built,
   # otherwise we run into incompatibility issues when mixing compiler and linker
   # versions.
-  bintools-unwrapped = llvmPackages_latest.tools.bintools-unwrapped.override {
+  bintools-unwrapped = llvmPackages_latest.bintools-unwrapped.override {
     lld = clangOmpss2Unwrapped;
   };
-  bintools = llvmPackages_latest.tools.bintools.override {
+  bintools = llvmPackages_latest.bintools.override {
     bintools = bintools-unwrapped;
   };
   targetConfig = stdenv.targetPlatform.config;
