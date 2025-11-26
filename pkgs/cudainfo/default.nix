@@ -12,7 +12,7 @@ stdenv.mkDerivation (finalAttrs: {
   src = ./.;
   buildInputs = [
     cudatoolkit # Required for nvcc
-    cudaPackages.cuda_cudart.static # Required for -lcudart_static
+    (lib.getOutput "static" cudaPackages.cuda_cudart) # Required for -lcudart_static
     autoAddDriverRunpath
   ];
   installPhase = ''
