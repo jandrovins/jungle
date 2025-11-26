@@ -12,7 +12,7 @@
 , paraverKernel
 , openssl
 , glibcLocales
-, wrapGAppsHook
+, wrapGAppsHook3
 }:
 
 let
@@ -64,7 +64,7 @@ stdenv.mkDerivation rec {
     autoconf
     automake
     autoreconfHook
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
 
   buildInputs = [
