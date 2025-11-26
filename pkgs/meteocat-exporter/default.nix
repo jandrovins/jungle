@@ -1,8 +1,10 @@
 { python3Packages, lib }:
 
-python3Packages.buildPythonApplication rec {
+python3Packages.buildPythonApplication {
   pname = "meteocat-exporter";
   version = "1.0";
+
+  pyproject = true;
 
   src = ./.;
 
