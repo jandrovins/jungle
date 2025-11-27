@@ -5,5 +5,5 @@
   boot.kernelModules = [ "ipmi_watchdog" ];
 
   # Enable systemd watchdog with 30 s interval
-  systemd.watchdog.runtimeTime = "30s";
+  systemd.settings.Manager.RuntimeWatchdogSec = 30;
 }
