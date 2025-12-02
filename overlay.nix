@@ -30,7 +30,8 @@ let
       amd-uprof-driver = _prev.callPackage ./pkgs/amd-uprof/driver.nix { };
     });
     lmbench = callPackage ./pkgs/lmbench/default.nix { };
-    mcxx = callPackage ./pkgs/mcxx/default.nix { };
+    # Broken and unmantained
+    # mcxx = callPackage ./pkgs/mcxx/default.nix { };
     meteocat-exporter = prev.callPackage ./pkgs/meteocat-exporter/default.nix { };
     mpi = final.mpich; # Set MPICH as default
     mpich = callPackage ./pkgs/mpich/default.nix { mpich = prev.mpich; };

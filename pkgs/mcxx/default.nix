@@ -65,6 +65,7 @@ stdenv.mkDerivation rec {
   ];
 
   meta = {
+    broken = true;
     homepage = "https://github.com/bsc-pm/mcxx";
     description = "C/C++/Fortran source-to-source compilation infrastructure aimed at fast prototyping";
     maintainers = with lib.maintainers.bsc; [ rpenacob ];
