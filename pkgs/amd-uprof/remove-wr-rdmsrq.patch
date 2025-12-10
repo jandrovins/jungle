@@ -1,0 +1,20 @@
+diff --git a/inc/PwrProfAsm.h b/inc/PwrProfAsm.h
+index d77770a..c93a0e9 100644
+--- a/inc/PwrProfAsm.h
++++ b/inc/PwrProfAsm.h
+@@ -347,6 +347,7 @@
+ 
+ #endif
+ 
++/*
+ #define rdmsrq(msr,val1,val2,val3,val4) ({ \
+         __asm__ __volatile__( \
+                               "rdmsr\n" \
+@@ -362,6 +363,7 @@
+                               :"c"(msr), "a"(val1), "d"(val2), "S"(val3), "D"(val4) \
+                             ); \
+     })
++*/
+ 
+ #define rdmsrpw(msr,val1,val2,val3,val4) ({ \
+         __asm__ __volatile__( \
