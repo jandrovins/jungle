@@ -21,7 +21,7 @@
       prefixLength = 24;
     } ];
     # Watch out! The OmniPath device is not in the same place here:
-    interfaces.ibp129s0.ipv4.addresses = [ {
+    interfaces.ibs801.ipv4.addresses = [ {
       address = "10.0.42.2";
       prefixLength = 24;
     } ];

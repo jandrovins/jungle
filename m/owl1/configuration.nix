@@ -20,7 +20,7 @@
       address = "10.0.40.1";
       prefixLength = 24;
     } ];
-    interfaces.ibp5s0.ipv4.addresses = [ {
+    interfaces.ibs785.ipv4.addresses = [ {
       address = "10.0.42.1";
       prefixLength = 24;
     } ];
