@@ -27,4 +27,7 @@
       };
     };
   };
+
+  # Allow gitea user to send mail
+  users.users.gitea.extraGroups = [ "mail-robot" ];
 }
