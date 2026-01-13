@@ -12,4 +12,16 @@
     '';
     destination = "/etc/udev/rules.d/60-ftdi-tc1.rules";
   });
+
+  # Allow access to USB for docker in GitLab runner
+  services.gitlab-runner = {
+    services.gitlab-bsc-docker = {
+      registrationFlags = [
+        # We need raw access to the USB port to reboot the board
+        "--docker-devices /dev/bus/usb/003/003"
+        # And TTY access for the serial port
+        "--docker-devices /dev/ttyUSB2"
+      ];
+    };
+  };
 }
