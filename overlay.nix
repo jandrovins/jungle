@@ -63,6 +63,7 @@ let
     tampi = callPackage ./pkgs/tampi/default.nix { };
     tglib = callPackage ./pkgs/tglib { };
     upc-qaire-exporter = prev.callPackage ./pkgs/upc-qaire-exporter/default.nix { };
+    valloc = callPackage ./pkgs/valloc { };
     wxparaver = callPackage ./pkgs/paraver/default.nix { };
   };
 
