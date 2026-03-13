@@ -5,9 +5,9 @@
 , numactl
 , cmake
 , nosv ? null
-, gitUrl ? "git@github.com:jandrovins/valloc.git"
+, gitUrl ? "https://github.com/jandrovins/valloc.git"
 , gitBranch ? "main"
-, gitCommit ? "442764195b5dfabc0e46498f5bc286b1a9f8b753"
+, gitCommit ? "7fb59c215e2e1e4a60bf93a4823f0e091030054d"
 }:
 
 with lib;
